@@ -1,13 +1,11 @@
 const express = require('express')
+const routes = require("./routes/index.js")
+
 const app = express()
 
+app.use(express.json())
 
+app.use(routes)
 
-app.get('/', function (req, res) {
-  res.send('Hello World')
-})
-
-app.listen(5000, () => {
-console.log("Servidor rodando na porta 5000")
-})
+app.listen(5000, () => console.log("Servidor rodando na porta 5000!"))
 
