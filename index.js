@@ -7,5 +7,7 @@ app.get('/', function (req, res) {
   res.send('Hello World')
 })
 
-app.listen(5000)
+app.listen(5000, () => {
+console.log("Servidor rodando na porta 5000")
+})
 
