@@ -1,12 +1,12 @@
 const {Sequelize} = require("sequelize");
 
 const DB_NAME = "mydb"; 
-const DB_USER = ""; //usuario(root)
+const DB_USER = "root"; //usuario(root)
 const DB_PASS = ""; //senha 
 const DB_CONFIG = {
-    host: "", //localhost
-    dialect: "" , //mysql
-    port: "",  //porta do banco
+    host: "localhost", //localhost
+    dialect: "mysql" , //mysql
+    port: 3306,  //porta do banco
 };
 
 let db = {};

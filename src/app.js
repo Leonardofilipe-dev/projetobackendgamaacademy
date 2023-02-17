@@ -5,6 +5,8 @@ const db = require("./database/connection");
 const app = express();
 
 app.use(express());
+
+db.hasConnection()
 app.use(routes);
 
 app.listen(5000, ()=>{

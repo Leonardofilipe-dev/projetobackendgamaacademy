@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`products` (
   `description` VARCHAR(200) NULL,
   `category_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_products_categories_idx` (`category_id` ASC) VISIBLE,
+  INDEX `fk_products_categories_idx` (`category_id` ASC),
   CONSTRAINT `fk_products_categories`
     FOREIGN KEY (`category_id`)
     REFERENCES `mydb`.`categories` (`id`)
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`orders` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `users_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_orders_users1_idx` (`users_id` ASC) VISIBLE,
+  INDEX `fk_orders_users1_idx` (`users_id` ASC),
   CONSTRAINT `fk_orders_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `mydb`.`users` (`id`)
@@ -81,8 +81,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`orders_products` (
   `products_id` INT NOT NULL,
   `total_price` DOUBLE NULL,
   PRIMARY KEY (`orders_id`, `products_id`),
-  INDEX `fk_orders_has_products_products1_idx` (`products_id` ASC) VISIBLE,
-  INDEX `fk_orders_has_products_orders1_idx` (`orders_id` ASC) VISIBLE,
+  INDEX `fk_orders_has_products_products1_idx` (`products_id` ASC),
+  INDEX `fk_orders_has_products_orders1_idx` (`orders_id` ASC),
   CONSTRAINT `fk_orders_has_products_orders1`
     FOREIGN KEY (`orders_id`)
     REFERENCES `mydb`.`orders` (`id`)
