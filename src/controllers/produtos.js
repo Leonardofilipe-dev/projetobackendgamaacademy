@@ -1,3 +1,4 @@
+const { where } = require('sequelize')
 const produtos = require('../models/Produtos.js')
 
 
@@ -32,11 +33,51 @@ class ProdutoController {
 
       })
 
+     
+
      console.log(req.body)
       res.json(novoProduto)
        
     }
+
+    static async deletarProduto(req, res){
+      const {id} = req.params
+
+    
+  
+      await produtos.destroy({
+        where:{
+          id,
+        }
+      })
+
+      res.json("Produto deletado com sucesso!")
+
+      }
+
+    static async atualizarProduto(req, res){
+      const {id} = req.params
+      const {product_name, photo, price, description, category_id } = req.body
+
+      const produtoAtualizado = await produtos.update(
+          {product_name,
+            photo,
+            price,
+            description,
+            category_id
+           },
+
+           {where:{
+            id
+          }}
+       )
+
+       res.json("Atualizado com sucesso!")
+
+          
+    }
 }
+
 
 
 
