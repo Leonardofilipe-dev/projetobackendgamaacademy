@@ -2,9 +2,10 @@ const express = require("express");
 const routes = require("./routes/index");
 const db = require("./database/connection");
 
+
 const app = express();
 
-app.use(express());
+app.use(express.json());
 
 db.hasConnection()
 app.use(routes);

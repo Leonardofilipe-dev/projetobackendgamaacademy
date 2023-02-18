@@ -1,7 +1,8 @@
 const db = require("../database/connection.js")
 const {DataTypes} = require('sequelize')
 
-const Produtos = db.define("Produtos",{
+
+const Produtos = db.define("products",{
 id:{
     type:DataTypes.INTEGER,
     primaryKey: true,
@@ -24,7 +25,12 @@ description:{
 category_id:{
 type: DataTypes.INTEGER,
 },
-tableName: "product",
-})
+//tableName:"products",
+
+},
+{
+    timestamps: false // Desativa os campos "createdAt" e "updatedAt"
+  }
+)
 
 module.exports = Produtos
