@@ -26,7 +26,7 @@ class ProdutoController {
 
       const novoProduto = await produtos.create({
         product_name,
-         photo,
+         photo: req.file.filename,
           price,
           description,
           category_id
@@ -74,6 +74,7 @@ class ProdutoController {
 
        res.json("Atualizado com sucesso!")
 
+    
           
     }
 }
