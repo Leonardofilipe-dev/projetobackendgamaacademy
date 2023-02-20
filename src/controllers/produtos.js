@@ -74,7 +74,6 @@ class ProdutoController {
 
        res.json("Atualizado com sucesso!")
 
-    
           
     }
 }
