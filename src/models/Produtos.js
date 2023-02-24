@@ -1,5 +1,6 @@
 const db = require("../database/connection.js")
 const {DataTypes} = require('sequelize')
+const Categorias = require("../models/Categorias.js")
 
 
 const Produtos = db.define("products",{
@@ -24,6 +25,10 @@ description:{
 },
 category_id:{
 type: DataTypes.INTEGER,
+references:{
+model: Categorias, 
+key: 'id',
+},
 },
 //tableName:"products",
 

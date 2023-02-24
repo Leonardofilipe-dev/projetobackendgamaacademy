@@ -1,5 +1,5 @@
 const { where } = require('sequelize')
-const produtos = require('../models/Produtos.js')
+const {Produtos, Categorias} = require('../models')
 
 
 class CategoriaController{
@@ -11,7 +11,9 @@ class CategoriaController{
 
 class ProdutoController {
      static async listarProduto(req, res){
-      const listaDeProdutos = await produtos.findAll() // find All faz listar todos os produtos
+      const listaDeProdutos = await Produtos.findAll({
+        include: Categorias
+      }) // find All faz listar todos os produtos
 
       res.json(listaDeProdutos)
       
@@ -24,7 +26,7 @@ class ProdutoController {
       
       const {product_name, photo, price, description, category_id } = req.body
 
-      const novoProduto = await produtos.create({
+      const novoProduto = await Produtos.create({
         product_name,
          photo: req.file.filename,
           price,
@@ -45,7 +47,7 @@ class ProdutoController {
 
     
   
-      await produtos.destroy({
+      await Produtos.destroy({
         where:{
           id,
         }
@@ -59,7 +61,7 @@ class ProdutoController {
       const {id} = req.params
       const {product_name, photo, price, description, category_id } = req.body
 
-      const produtoAtualizado = await produtos.update(
+      const produtoAtualizado = await Produtos.update(
           {product_name,
             photo,
             price,
@@ -73,11 +75,6 @@ class ProdutoController {
        )
 
        res.json("Atualizado com sucesso!")
-
-       app.post('/produto/cadastrar', upload.single('foto'), (req, res) => {
-        const {file} = req.body;
-        res.json({file});
-    });
 
           
     }
