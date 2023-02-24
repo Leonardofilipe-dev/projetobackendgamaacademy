@@ -1,16 +1,21 @@
 const express = require("express");
-const ProdutoController = require("../controllers/produtos.js")
+const ProdutoController = require("../controllers/produtos.js") 
+const usuarioController = require("../controllers/usuario.js")
 const app = express()
 const routes = express.Router();
+
 
 const upload = require("../middlewares/upload.js")
 
 
 
-routes.get("/produto/listar", ProdutoController.listarProduto);
-routes.post("/produto/cadastrar", upload.single('photo'), ProdutoController.cadastrarProduto);
-routes.delete("/produto/:id/deletar", ProdutoController.deletarProduto);
-routes.put("/produto/:id/atualizar", upload.single('photo'), ProdutoController.atualizarProduto);
+routes.get("/produto", ProdutoController.listarProduto);
+routes.post("/produto", upload.single('photo'), ProdutoController.cadastrarProduto);
+routes.delete("/produto/:id", ProdutoController.deletarProduto);
+routes.patch("/produto/:id", upload.single('photo'), ProdutoController.atualizarProduto);
+
+routes.post("/usuario", usuarioController.registro)
+
 
 
 module.exports = routes;
