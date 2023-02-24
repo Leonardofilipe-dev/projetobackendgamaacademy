@@ -2,12 +2,7 @@ const { where } = require('sequelize')
 const {Produtos, Categorias} = require('../models')
 
 
-class CategoriaController{
-  static async cadastrarCategoria(req, res){
-      
-    const { } = req.body
-  }
-}
+
 
 class ProdutoController {
      static async listarProduto(req, res){
@@ -26,6 +21,9 @@ class ProdutoController {
       
       const {product_name, photo, price, description, category_id } = req.body
 
+
+
+
       const novoProduto = await Produtos.create({
         product_name,
          photo: req.file.filename,
@@ -33,16 +31,20 @@ class ProdutoController {
           description,
           category_id
 
+        
       })
+
+      console.log(photo)
 
      
 
      console.log(req.body)
-      res.json(novoProduto)
+      res.status(201).json(novoProduto)
        
     }
 
     static async deletarProduto(req, res){
+      try{
       const {id} = req.params
 
     
@@ -50,10 +52,14 @@ class ProdutoController {
       await Produtos.destroy({
         where:{
           id,
-        }
-      })
+        },
+      }),
 
-      res.json("Produto deletado com sucesso!")
+      res.status(204).json("Deletado")
+    }catch (error) {
+      
+      return res.status(500).json("Ocorreu um erro!")
+    }
 
       }
 
@@ -61,9 +67,13 @@ class ProdutoController {
       const {id} = req.params
       const {product_name, photo, price, description, category_id } = req.body
 
+      if(!id) return res.status(400).json("id não enviado")
+
+
       const produtoAtualizado = await Produtos.update(
+        
           {product_name,
-            photo,
+            photo: req.file.filename,
             price,
             description,
             category_id
@@ -74,7 +84,8 @@ class ProdutoController {
           }}
        )
 
-       res.json("Atualizado com sucesso!")
+      res.json("Produto atualizado")
+      
 
           
     }
