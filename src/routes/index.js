@@ -3,6 +3,7 @@ const ProdutoController = require("../controllers/produtos.js")
 const usuarioController = require("../controllers/usuario.js")
 const app = express()
 const routes = express.Router();
+const usuarioCreateValidation = require("../validations/usuarios/create.js")
 
 
 const upload = require("../middlewares/upload.js")
@@ -14,7 +15,7 @@ routes.post("/produto", upload.single('photo'), ProdutoController.cadastrarProdu
 routes.delete("/produto/:id", ProdutoController.deletarProduto);
 routes.patch("/produto/:id", upload.single('photo'), ProdutoController.atualizarProduto);
 
-routes.post("/usuario", usuarioController.registro)
+routes.post("/usuario", usuarioCreateValidation  , usuarioController.registro)
 
 
 
