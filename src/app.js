@@ -1,4 +1,5 @@
 const express = require("express");
+var cors = require('cors')
 const routes = require("./routes/index");
 const db = require("./database/connection");
 const handleError = require("./middlewares/handleError.js")
@@ -7,6 +8,7 @@ const handleError = require("./middlewares/handleError.js")
 
 const app = express();
 
+app.use(cors())
 
 app.use(express.static("public"))
 app.use(express.json());
