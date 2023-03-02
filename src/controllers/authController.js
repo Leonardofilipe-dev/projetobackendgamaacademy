@@ -23,7 +23,9 @@ async login(req, res){
             return res.status(401).json("Senha invalida!")
         }
 
-        return res.json("Logado com sucesso!")
+
+
+        return res.json(usuario)
 
         },
 
