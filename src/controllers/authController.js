@@ -1,4 +1,5 @@
 const {Usuario} = require("../models")
+const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 
 
@@ -23,9 +24,7 @@ async login(req, res){
             return res.status(401).json("Senha invalida!")
         }
 
-
-
-        return res.json(usuario)
+        return res.json("Logado com sucesso!")
 
         },
 

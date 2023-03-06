@@ -8,17 +8,19 @@ const authLoginValidation = require("../validations/auth/login.js")
 const authController = require("../controllers/authController.js")
 
 
+
 const upload = require("../middlewares/upload.js")
 
 
 
-routes.get("/produto", ProdutoController.listarProduto);
+routes.get("/produto/:id", ProdutoController.listarumProduto);
 routes.post("/produto", upload.single('photo'), ProdutoController.cadastrarProduto);
 routes.delete("/produto/:id", ProdutoController.deletarProduto);
 routes.patch("/produto/:id", upload.single('photo'), ProdutoController.atualizarProduto);
 
 routes.post("/usuario", usuarioCreateValidation  , usuarioController.registro)
 routes.post("/login", authLoginValidation, authController.login)
+routes.get("/produto/", ProdutoController.listarProduto)
 
 
 module.exports = routes;
