@@ -14,6 +14,25 @@ class ProdutoController {
       
     }
 
+    static async listarumProduto(req, res){
+      const produto = await Produtos.findOne({
+        where: { id: req.params.id },
+        include: Categorias
+      })
+    
+      if (produto) {
+        res.json(produto)
+      } else {
+        res.status(404).json({ message: "Produto não encontrado." })
+      }
+    }
+    
+    
+    
+    
+    
+    
+
    
     
 
