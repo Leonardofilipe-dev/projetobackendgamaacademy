@@ -9,7 +9,8 @@ const authController = require("../controllers/authController.js")
 
 
 
-const upload = require("../middlewares/upload.js")
+const upload = require("../middlewares/upload.js");
+const categoriaController = require("../controllers/categoria.js");
 
 
 
@@ -21,6 +22,12 @@ routes.patch("/produto/:id", upload.single('photo'), ProdutoController.atualizar
 routes.post("/usuario", usuarioCreateValidation  , usuarioController.registro)
 routes.post("/login", authLoginValidation, authController.login)
 routes.get("/produto/", ProdutoController.listarProduto)
+
+routes.get("/categoria/", categoriaController.listarCategoria)
+routes.get("/categoria/:id", categoriaController.listarumaCategoria)
+routes.post("/categoria/", categoriaController.cadastrarCategoria)
+routes.delete("/categoria/:id", categoriaController.deletarCategoria)
+routes.patch("/categoria/:id", categoriaController.atualizarCategoria)
 
 
 module.exports = routes;
