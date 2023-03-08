@@ -7,7 +7,7 @@ const {Produtos, Categorias} = require('../models')
 class categoriaController {
      static async listarCategoria(req, res){
       const listaDeCategoria = await Categorias.findAll({
-        //include: Produtos
+       
       }) // find All faz listar todos os produtos
 
       res.json(listaDeCategoria)
