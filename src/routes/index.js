@@ -13,15 +13,16 @@ const upload = require("../middlewares/upload.js");
 const categoriaController = require("../controllers/categoria.js");
 
 
-
+routes.get("/produto/", ProdutoController.listarProduto)
 routes.get("/produto/:id", ProdutoController.listarumProduto);
 routes.post("/produto", upload.single('photo'), ProdutoController.cadastrarProduto);
 routes.delete("/produto/:id", ProdutoController.deletarProduto);
 routes.patch("/produto/:id", upload.single('photo'), ProdutoController.atualizarProduto);
 
+
 routes.post("/usuario", usuarioCreateValidation  , usuarioController.registro)
 routes.post("/login", authLoginValidation, authController.login)
-routes.get("/produto/", ProdutoController.listarProduto)
+
 
 routes.get("/categoria/", categoriaController.listarCategoria)
 routes.get("/categoria/:id", categoriaController.listarumaCategoria)

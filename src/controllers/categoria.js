@@ -40,7 +40,11 @@ class categoriaController {
       
       const {category_name } = req.body
 
+      const categoriaExistente = await Categorias.findOne({ where: { category_name: category_name } })
 
+      if (categoriaExistente) {
+        return res.status(400).json({ error: 'Categoria ja cadastrada!' })
+      }
 
 
       const novacategoria = await Categorias.create({
