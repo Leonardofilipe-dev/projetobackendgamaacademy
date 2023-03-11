@@ -18,7 +18,7 @@ routes.get("/produto/:id", ProdutoController.listarumProduto);
 routes.post("/produto", upload.single('photo'), ProdutoController.cadastrarProduto);
 routes.delete("/produto/:id", ProdutoController.deletarProduto);
 routes.patch("/produto/:id", upload.single('photo'), ProdutoController.atualizarProduto);
-
+routes.get("/user", usuarioController.getUser)
 
 routes.post("/usuario", usuarioCreateValidation  , usuarioController.registro)
 routes.post("/login", authLoginValidation, authController.login)
